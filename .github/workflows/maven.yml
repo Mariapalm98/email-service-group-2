@@ -44,7 +44,7 @@ jobs:
           EOF
 
       - name: Build with Maven
-        run: mvn -B package --file pom.xml
+        run: mvn -B package --file pom.xml -DskipTests -s ~/.m2/settings.xml
         env:
           RABBITMQ_HOST: ${{ secrets.RABBITMQ_HOST }}
           RABBITMQ_PORT: ${{ secrets.RABBITMQ_PORT }}

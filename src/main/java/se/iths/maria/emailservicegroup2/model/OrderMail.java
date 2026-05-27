@@ -13,7 +13,7 @@ import java.util.List;
 public class OrderMail {
     private String customerName;
     private String customerEmail;
-    private List<OrderItem> orderItem;
+    private List<OrderItem> items;
     private BigDecimal totalPrice;
 
 

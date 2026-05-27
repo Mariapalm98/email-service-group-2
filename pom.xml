@@ -46,7 +46,7 @@
         <dependency>
             <groupId>se.iths.maria</groupId>
             <artifactId>spring-messengers</artifactId>
-            <version>1.0.0</version>
+            <version>3.0.0</version>
         </dependency>
 
         <dependency>
@@ -68,11 +68,6 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <optional>true</optional>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-amqp-test</artifactId>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 
