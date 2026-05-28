@@ -12,7 +12,6 @@ import java.util.List;
 @NoArgsConstructor
 public class OrderMail {
     private String customerName;
-    private String customerEmail;
     private List<OrderItem> items;
     private BigDecimal totalPrice;
 
