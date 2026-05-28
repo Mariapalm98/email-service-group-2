@@ -20,7 +20,7 @@ public class OrderSubscriber {
     public void handleOrder(OrderMail orderMail) {
         String subject = "Orderbekräftelse";
         String body = buildEmail(orderMail);
-        emailService.sendEmail(orderMail.getCustomerEmail(), subject, body);
+        emailService.sendEmail(orderMail.getCustomerName(), subject, body);
     }
 
     private String buildEmail(OrderMail orderMail) {
