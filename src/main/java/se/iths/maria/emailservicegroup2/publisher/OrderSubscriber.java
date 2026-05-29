@@ -4,7 +4,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import se.iths.maria.emailservicegroup2.config.RabbitMQConfig;
 import se.iths.maria.emailservicegroup2.model.OrderItem;
-import se.iths.maria.emailservicegroup2.model.OrderMail;
+import se.iths.maria.emailservicegroup2.model.OrderResponse;
 import se.iths.maria.springmessengers.EmailService;
 
 @Component
@@ -17,22 +17,22 @@ public class OrderSubscriber {
     }
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)
-    public void handleOrderItem(OrderMail orderMail) {
+    public void handleOrderItem(OrderResponse orderResponse) {
         String subject = "Orderbekräftelse";
-        String body = buildEmail(orderMail);
+        String body = buildEmail(orderResponse);
         System.out.println(subject);
-        System.out.println("Mejl skickat till " + orderMail.getCustomerName());
+        System.out.println("Mejl skickat till " + orderResponse.getCustomerName());
         System.out.println(body);
         //emailService.sendEmail(orderMail.getCustomerName(), subject, body);
     }
 
-    private String buildEmail(OrderMail orderMail) {
-        String body = "Hej " + orderMail.getCustomerName() + "\n\n";
+    private String buildEmail(OrderResponse orderResponse) {
+        String body = "Hej " + orderResponse.getCustomerName() + "\n\n";
         body += "Din order:\n";
-        for (OrderItem item : orderMail.getItems()) {
+        for (OrderItem item : orderResponse.getItems()) {
             body += item.getName() + " antal: " + item.getQuantity() + " Pris: " + item.getPrice() + "kr\n";
         }
-        body += "\nTotalpris: " + orderMail.getTotalPrice() + "kr";
+        body += "\nTotalpris: " + orderResponse.getTotalPrice() + "kr";
         return body;
     }
 }

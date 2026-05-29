@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-public class OrderMail {
+public class OrderResponse {
     private String customerName;
     private List<OrderItem> items;
     private BigDecimal totalPrice;
