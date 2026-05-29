@@ -29,9 +29,16 @@ public class OrderSubscriber {
     private String buildEmail(OrderResponse orderResponse) {
         String body = "Hej " + orderResponse.customerName() + "\n\n";
         body += "Din order:\n";
-        for (ProductInfo item : orderResponse.items()) {
-            body += item.name() + " antal: " + item.quantity() + " Pris: " + item.price() + "kr\n";
+
+        if (orderResponse.items() != null) {
+            for (ProductInfo items : orderResponse.items()) {
+                body += items.name() + " antal: " + items.quantity()
+                        + " Pris: " + items.price() + "kr\n";
+            }
+        } else {
+            body += "Inga items hittades\n";
         }
+
         body += "\nTotalpris: " + orderResponse.totalPrice() + "kr";
         return body;
     }
