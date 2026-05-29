@@ -17,10 +17,12 @@ public class OrderSubscriber {
     }
 
     @RabbitListener(queues = RabbitMQConfig.QUEUE_NAME)
-    public void handleOrder(OrderMail orderMail) {
+    public void handleOrderItem(OrderMail orderMail) {
         String subject = "Orderbekräftelse";
         String body = buildEmail(orderMail);
         emailService.sendEmail(orderMail.getCustomerName(), subject, body);
+        System.out.println("Mejl skickat till " + orderMail.getCustomerName());
+        System.out.println(body);
     }
 
     private String buildEmail(OrderMail orderMail) {
