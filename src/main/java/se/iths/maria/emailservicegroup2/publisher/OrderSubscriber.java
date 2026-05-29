@@ -21,18 +21,18 @@ public class OrderSubscriber {
         String subject = "Orderbekräftelse";
         String body = buildEmail(orderResponse);
         System.out.println(subject);
-        System.out.println("Mejl skickat till " + orderResponse.getCustomerName());
+        System.out.println("Mejl skickat till " + orderResponse.customerName());
         System.out.println(body);
         //emailService.sendEmail(orderMail.getCustomerName(), subject, body);
     }
 
     private String buildEmail(OrderResponse orderResponse) {
-        String body = "Hej " + orderResponse.getCustomerName() + "\n\n";
+        String body = "Hej " + orderResponse.customerName() + "\n\n";
         body += "Din order:\n";
-        for (OrderItem item : orderResponse.getItems()) {
+        for (OrderItem item : orderResponse.items()) {
             body += item.getName() + " antal: " + item.getQuantity() + " Pris: " + item.getPrice() + "kr\n";
         }
-        body += "\nTotalpris: " + orderResponse.getTotalPrice() + "kr";
+        body += "\nTotalpris: " + orderResponse.totalPrice() + "kr";
         return body;
     }
 }
