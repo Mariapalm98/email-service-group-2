@@ -3,8 +3,8 @@ package se.iths.maria.emailservicegroup2.publisher;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 import se.iths.maria.emailservicegroup2.config.RabbitMQConfig;
-import se.iths.maria.emailservicegroup2.model.OrderItem;
 import se.iths.maria.emailservicegroup2.model.OrderResponse;
+import se.iths.maria.emailservicegroup2.model.ProductInfo;
 import se.iths.maria.springmessengers.EmailService;
 
 @Component
@@ -29,8 +29,8 @@ public class OrderSubscriber {
     private String buildEmail(OrderResponse orderResponse) {
         String body = "Hej " + orderResponse.customerName() + "\n\n";
         body += "Din order:\n";
-        for (OrderItem item : orderResponse.items()) {
-            body += item.getName() + " antal: " + item.getQuantity() + " Pris: " + item.getPrice() + "kr\n";
+        for (ProductInfo item : orderResponse.items()) {
+            body += item.name() + " antal: " + item.quantity() + " Pris: " + item.price() + "kr\n";
         }
         body += "\nTotalpris: " + orderResponse.totalPrice() + "kr";
         return body;
