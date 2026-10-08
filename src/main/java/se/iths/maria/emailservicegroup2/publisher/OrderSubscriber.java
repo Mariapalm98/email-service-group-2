@@ -21,9 +21,21 @@ public class OrderSubscriber {
         String subject = "Orderbekräftelse";
         String body = buildEmail(orderResponse);
         System.out.println(subject);
-        System.out.println("Mejl skickat till " + orderResponse.customerName());
+        System.out.println("Behandlar orderbekräftelse för " + orderResponse.customerName());
         System.out.println(body);
-        //emailService.sendEmail(orderMail.getCustomerName(), subject, body);
+
+        String recipient = orderResponse.customerName();
+        if (recipient == null || !recipient.contains("@")) {
+            System.err.println("Varning: Mottagaren '" + recipient + "' är inte en giltig e-postadress (saknar '@'). Mejlet skickas inte.");
+            return;
+        }
+
+        try {
+            emailService.sendEmail(recipient, subject, body);
+            System.out.println("Mejl skickat till " + recipient);
+        } catch (Exception e) {
+            System.err.println("Kunde inte skicka mejl till " + recipient + ": " + e.getMessage());
+        }
     }
 
     private String buildEmail(OrderResponse orderResponse) {
