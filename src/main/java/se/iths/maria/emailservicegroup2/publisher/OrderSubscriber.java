@@ -30,12 +30,12 @@ public class OrderSubscriber {
             return;
         }
 
-//        try {
-//            emailService.sendEmail(recipient, subject, body);
-//            System.out.println("Mejl skickat till " + recipient);
-//        } catch (Exception e) {
-//            System.err.println("Kunde inte skicka mejl till " + recipient + ": " + e.getMessage());
-//        }
+        try {
+            emailService.sendEmail(recipient, subject, body);
+            System.out.println("Mejl skickat till " + recipient);
+        } catch (Exception e) {
+            System.err.println("Kunde inte skicka mejl till " + recipient + ": " + e.getMessage());
+        }
     }
 
     private String buildEmail(OrderResponse orderResponse) {
